@@ -11,7 +11,26 @@ aci_exporter:
     keepalive: 120
     timeout: 30
     pagesize: 1000
-  fabrics: {}
+  fabrics: 
+    fab1:
+      username: admin
+      password: C1sco123
+      apic:
+        - https://84.22.27.165:9443
+          #  - https://IP2
+          #  - https://IP3
+      #service_discovery oobMgmtAddr|inbMgmtAddr
+      service_discovery: oobMgmtAddr
+      #fab2:
+      #username: <username>
+      #password: <password>
+      #apic:
+      #  - https://IP1
+      #  - https://IP2
+      #  - https://IP3
+      # service_discovery oobMgmtAddr|inbMgmtAddr
+      #service_discovery: inbMgmtAddr
+  
   
   # Helm can't use variables in a Value file so naming the service 
   # Dynamically (i.e. including the release name) will break the prometheus sub-chart
@@ -22,6 +41,7 @@ aci_exporter:
   # You  need to change this ONLY if you want to deploy this chart multiple times in the same namespace to avoid 
   # having duplicate service name in the same NS.
   aciServiceDiscoveryURLs:
+    #sd: http://127.0.0.1:9643/sd
     sd: http://aci-exporter-svc:9643/sd
   prefix: aci_
 
